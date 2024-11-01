@@ -1,0 +1,115 @@
+@import url('http://fonts.googleapis.com/css?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	border: none;
+	outline: none;
+	font-family: 'Poppins', sans-serif;
+}
+
+:root {
+	--bg-color: #081b2ff9;
+	--main-color: #00abf0;
+	--text-color: #333;
+	--second-text-color: #555;
+	--white-color: #fff;
+	--cover-color: linear-gradient(45deg, #00b7ff, #002736);
+	--pages-color: linear-gradient(90deg, #fff, #ddd);
+	--border: 0.125rem solid #00abf0;
+	--box-shadow: 0 0 0.6 rem rgba(0, 0, 0, 0.2);
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: var(--bg-color);
+	color: var(--text-color);
+}
+
+.wrapper {
+	position: relative;
+	width: 66rem;
+	height: 45rem;
+	padding: 2rem;
+}
+
+.cover {
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	background: var(--cover-color); /* TODO Comprendre pourquoi background-color reagit differemment a background ici */
+	box-shadow: var(--box-shadow);
+	border-top-left-radius: 0.6rem;
+	border-bottom-left-radius: 0.6rem;
+	transform-origin: right;
+}
+
+.cover.cover-left {
+	z-index: -1;
+}
+
+.cover.cover-right.turn {
+	transform: rotateY(180deg);
+}
+
+.book {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
+.book .book-page {
+	border-top-left-radius: 0.6rem;
+	border-bottom-left-radius: 0.6rem;
+	background-color: var(--white-color);
+	position: absolute;
+	width: 50%;
+	height: 100%;
+	box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.1);
+	display: flex;
+	padding: 2rem;
+}
+
+.profile-page {
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.profile-page img {
+	max-width: 180px;
+	border-radius: 50%;
+	border: 0.25rem solid var(--main-color);
+	margin-bottom: 0.8rem;
+}
+
+.profile-page h1 {
+	font-size: 2.7rem;
+	line-height: 1;
+}
+
+.profile-page h3 {
+	font-size: 1.5rem;
+	color: var(--main-color);
+}
+
+.profile-page .social-media a {
+	display: inline-flex;
+	width: 2.5rem;
+	height: 2.5rem;
+	background: transparent;
+	font-size: 1.3rem;
+	justify-content: center;
+	align-items: center;
+	border: var(--border);
+	border-radius: 50%;
+}
