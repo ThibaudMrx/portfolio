@@ -19,7 +19,8 @@
 	--cover-color: linear-gradient(45deg, #00b7ff, #002736);
 	--pages-color: linear-gradient(90deg, #fff, #ddd);
 	--border: 0.125rem solid #00abf0;
-	--box-shadow: 0 0 0.6 rem rgba(0, 0, 0, 0.2);
+	--border-thick: 0.2rem solid #00abf0;
+	--box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
 
 body {
@@ -67,8 +68,6 @@ body {
 }
 
 .book .book-page {
-	border-top-left-radius: 0.6rem;
-	border-bottom-left-radius: 0.6rem;
 	background-color: var(--white-color);
 	position: absolute;
 	width: 50%;
@@ -76,8 +75,8 @@ body {
 	box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.1);
 	display: flex;
 	padding: 2rem;
+	background: var(--pages-color);
 }
-
 .profile-page {
 	flex-direction: column;
 	display: flex;
@@ -103,13 +102,192 @@ body {
 }
 
 .profile-page .social-media a {
-	display: inline-flex;
-	width: 2.5rem;
-	height: 2.5rem;
 	background: transparent;
-	font-size: 1.3rem;
-	justify-content: center;
-	align-items: center;
 	border: var(--border);
 	border-radius: 50%;
+	color: var(--main-color);
+	display: inline-flex;
+	font-size: 1.3rem;
+	height: 2.5rem;
+	margin: 0 0.2rem;
+	justify-content: center;
+	align-items: center;
+	width: 2.5rem;
+	transition: 0.5s;
+}
+
+.profile-page .social-media a:hover {
+	background: var(--main-color);
+	color: var(--white-color);
+}
+
+.profile-page p {
+	margin-top: 0.5rem;
+	text-align: justify;
+}
+
+.profile-page .btn-box {
+	margin-top: 1.2rem;
+}
+
+.btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	width: 9.5rem;
+	height: 3rem;
+	border: var(--border);
+	background: var(--main-color);
+	border-radius: 0.3rem;
+	font-size: 1rem;
+	font-weight: 500;
+	color: var(--white-color);
+	margin: 0 1rem;
+	transition: 0.5s;
+}
+
+.btn:hover {
+	background: transparent;
+	color: var(--main-color);
+}
+
+.btn-box .btn:nth-child(2) {
+	background: transparent;
+	color: var(--main-color);
+}
+
+.btn-box .btn:nth-child(2):hover {
+	color: var(--white-color);
+	background: var(--main-color);
+}
+
+.book-page.page-right {
+	position: absolute;
+	right: 0;
+	transform-style: preserve-3d;
+	transform-origin: left;
+}
+
+.book-page.page-right.turn {
+	transform: rotateY(-180deg);
+}
+
+.book-page .page-front,
+.book-page .page-back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--pages-color);
+	padding: 1.5rem 2rem;
+}
+
+.book-page .page-front {
+	transform: rotateY(0deg) translateZ(1px);
+}
+
+.book-page .page-back {
+	transform: rotateY(180deg) translateZ(1px);
+}
+
+.title {
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+.workeduc-box {
+	border-left: var(--border-thick);
+}
+
+.workeduc-box .workeduc-content {
+	position: relative;
+	padding-left: 1.6rem;
+	margin-bottom: 1.2rem;
+}
+
+.workeduc-box .workeduc-content::before {
+	content: ''; /* Example content */
+	position: absolute;
+	top: 0;
+	left: -0.65rem;
+	width: 1.2rem;
+	height: 1.2rem;
+	background: var(--main-color);
+	border-radius: 50%;
+}
+.workeduc-content .year {
+	color: var(--main-color);
+}
+
+.workeduc-content .year i {
+	margin-right: 0.4rem;
+}
+
+.number-page {
+	position: absolute;
+	bottom: 1.2rem;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.nextprev-btn {
+	position: absolute;
+	bottom: 0.9rem;
+	right: 1.5rem;
+	width: 2rem;
+	height: 2rem;
+	cursor: pointer;
+	font-size: 2rem;
+	color: var(--second-text-color);
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.5s;
+}
+
+.nextprev-btn:hover {
+	color: var(--main-color);
+}
+
+.nextprev-btn.back {
+	left: 1.5rem;
+}
+
+.services-box {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+}
+
+.services-box .services-content {
+	flex: 1 1 1rem;
+	border: var(--border);
+	border-radius: 0.5rem;
+	text-align: center;
+	padding: 0.8rem 0.5rem 1.1rem;
+	transition: 0.3s ease;
+}
+
+.services-box .services-content:hover {
+	box-shadow: var(--box-shadow);
+}
+
+.services-content i {
+	font-size: 2.5rem;
+	color: var(--main-color);
+}
+
+.services-content h3 {
+	font-size: 1.1rem;
+}
+
+.services-content p {
+	margin: 0.2rem 0.8rem;
+	font-size: 1rem;
+}
+
+.services-content .btn {
+	width: 7rem;
+	height: 2rem;
 }
