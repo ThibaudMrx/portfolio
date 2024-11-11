@@ -16,7 +16,7 @@
 	--text-color: #333;
 	--second-text-color: #555;
 	--white-color: #fff;
-	--cover-color: linear-gradient(45deg, #00b7ff, #002736);
+	--cover-color: linear-gradient(90deg, #00b7ff, #004864);
 	--pages-color: linear-gradient(90deg, #fff, #ddd);
 	--border: 0.125rem solid #00abf0;
 	--border-thick: 0.2rem solid #00abf0;
@@ -30,13 +30,28 @@ body {
 	min-height: 100vh;
 	background: var(--bg-color);
 	color: var(--text-color);
+	overflow: hidden;
+}
+
+@keyframes show-animate {
+	0%,
+	30% {
+		opacity: 0;
+		transform: rotate(-20deg);
+	}
+	100% {
+		opacity: 1;
+		transform: rotate(0deg);
+	}
 }
 
 .wrapper {
 	position: relative;
-	width: 66rem;
-	height: 45rem;
+	width: 80rem;
+	height: 50rem;
 	padding: 2rem;
+	animation: show-animate 2s forwards;
+	perspective: 250rem;
 }
 
 .cover {
@@ -45,7 +60,7 @@ body {
 	position: absolute;
 	width: 50%;
 	height: 100%;
-	background: var(--cover-color); /* TODO Comprendre pourquoi background-color reagit differemment a background ici */
+	background: var(--cover-color);
 	box-shadow: var(--box-shadow);
 	border-top-left-radius: 0.6rem;
 	border-bottom-left-radius: 0.6rem;
@@ -54,6 +69,11 @@ body {
 
 .cover.cover-left {
 	z-index: -1;
+}
+
+.cover.cover-right {
+	z-index: 100;
+	transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 .cover.cover-right.turn {
@@ -65,6 +85,7 @@ body {
 	width: 100%;
 	height: 100%;
 	display: flex;
+	perspective: 250rem;
 }
 
 .book .book-page {
@@ -77,6 +98,42 @@ body {
 	padding: 2rem;
 	background: var(--pages-color);
 }
+
+.book-page.page-right {
+	position: absolute;
+	right: 0;
+	transform-style: preserve-3d;
+	transform-origin: left;
+	transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.book-page.page-left {
+	box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
+}
+
+.book-page.page-right.turn {
+	transform: rotateY(-180deg);
+}
+
+.book-page .page-front,
+.book-page .page-back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--pages-color);
+	padding: 1.5rem 2rem;
+}
+
+.book-page .page-front {
+	transform: rotateY(0deg) translateZ(1px);
+}
+
+.book-page .page-back {
+	transform: rotateY(180deg) translateZ(1px);
+}
+
 .profile-page {
 	flex-direction: column;
 	display: flex;
@@ -144,6 +201,7 @@ body {
 	color: var(--white-color);
 	margin: 0 1rem;
 	transition: 0.5s;
+	text-align: center;
 }
 
 .btn:hover {
@@ -159,36 +217,6 @@ body {
 .btn-box .btn:nth-child(2):hover {
 	color: var(--white-color);
 	background: var(--main-color);
-}
-
-.book-page.page-right {
-	position: absolute;
-	right: 0;
-	transform-style: preserve-3d;
-	transform-origin: left;
-}
-
-.book-page.page-right.turn {
-	transform: rotateY(-180deg);
-}
-
-.book-page .page-front,
-.book-page .page-back {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: var(--pages-color);
-	padding: 1.5rem 2rem;
-}
-
-.book-page .page-front {
-	transform: rotateY(0deg) translateZ(1px);
-}
-
-.book-page .page-back {
-	transform: rotateY(180deg) translateZ(1px);
 }
 
 .title {
@@ -290,4 +318,172 @@ body {
 .services-content .btn {
 	width: 7rem;
 	height: 2rem;
+}
+
+.skills-box {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+}
+
+.skills-box .skills-content {
+	flex: 1 1 20rem;
+}
+
+.skills-content h3 {
+	font-size: 1rem;
+	line-height: 1;
+	margin-bottom: 0.3rem;
+}
+
+.skills-content .content {
+	font-size: 0.7rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.skills-content .content span {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 5rem;
+	height: 4rem;
+	border: var(--border);
+	border-radius: 0.3rem;
+	font-weight: 600;
+	transition: 0.3s;
+}
+
+.skills-content .content span:hover {
+	box-shadow: var(--box-shadow);
+}
+
+.skills-content .content span i {
+	font-size: 2rem;
+	color: var(--main-color);
+}
+
+.portfolio-box .img-box {
+	display: flex;
+	width: 100%;
+	height: 15rem;
+	border: var(--border);
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
+
+.portfolio-box .img-box img {
+	width: 100%;
+	object-fit: cover;
+	transition: 0.3s ease;
+}
+
+.portfolio-box .img-box:hover img {
+	transform: scale(1.1);
+}
+
+.portfolio-box .info-box {
+	margin: 1rem 0 1.5rem;
+}
+
+.portfolio-box .info-box .info-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.portfolio-box .info-box .info-title {
+	font-size: 1.2rem;
+}
+
+.portfolio-box .info-box .info-title a {
+	display: flex;
+	align-items: center;
+	color: var(--main-color);
+}
+
+.portfolio-box .info-box .info-title a i {
+	margin-left: 0.3rem;
+}
+
+.portfolio-box .info-box p:nth-of-type(1) {
+	font-weight: 600;
+}
+
+.portfolio-box .btn-box {
+	display: flex;
+	justify-content: center;
+}
+
+.portfolio-box .btn-box .btn {
+	margin: 0 1.15rem;
+}
+
+.contact-box .field {
+	width: 100%;
+	background: transparent;
+	border: var(--border);
+	border-radius: 0.3rem;
+	padding: 0.8rem;
+	font-size: 1rem;
+	color: var(--text-color);
+	margin-bottom: 1rem;
+}
+
+.contact-box .field::placeholder {
+	color: var(--second-text-color);
+}
+
+.contact-box textarea {
+	resize: none;
+	height: 15rem;
+}
+
+.contact-box {
+	text-align: center;
+}
+
+.contact-box .btn {
+	cursor: pointer;
+}
+
+.back-profile {
+	position: absolute;
+	display: inline-flex;
+	bottom: 1.2rem;
+	right: 2rem;
+	width: 2rem;
+	height: 2rem;
+	background: transparent;
+	border: var(--border);
+	border-radius: 0.3rem;
+	font-size: 1.1rem;
+	color: var(--main-color);
+	justify-content: center;
+	align-items: center;
+}
+
+.back-profile p {
+	position: absolute;
+	color: var(--main-color);
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%) scale(0.5);
+	font-size: 1rem;
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.back-profile:hover {
+	background: var(--main-color);
+	color: var(--white-color);
+}
+
+.back-profile:hover p {
+	opacity: 1;
+	transform: translateX(-50%) scale(1);
+	top: -1.8rem;
 }
