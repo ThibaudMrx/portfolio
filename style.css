@@ -11,15 +11,15 @@
 }
 
 :root {
-	--bg-color: #081b2ff9;
-	--main-color: #00abf0;
-	--text-color: #333;
-	--second-text-color: #555;
-	--white-color: #fff;
-	--cover-color: linear-gradient(90deg, #00b7ff, #004864);
-	--pages-color: linear-gradient(90deg, #fff, #ddd);
-	--border: 0.125rem solid #00abf0;
-	--border-thick: 0.2rem solid #00abf0;
+	--bg-color: #223013;
+	--main-color: #bc6c25;
+	--text-color: #1d1106;
+	--second-text-color: #4b4b4b;
+	--white-color: #f5f5f5;
+	--cover-color: linear-gradient(90deg, #925520, #bc6c25);
+	--pages-color: linear-gradient(90deg, #f5f5f5, #dcdcdc);
+	--border: 0.125rem solid #bc6c25;
+	--border-thick: 0.2rem solid #bc6c25;
 	--box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
 }
 
